@@ -1,5 +1,6 @@
 const express = require('express');
 const { UserController } = require('../../controllers');
+const { AuthRequestMiddleawres } = require('../../middlewares');
 const router = express.Router();
 
 
@@ -7,10 +8,12 @@ const router = express.Router();
 
 ///api/v1/signup POST
 router.post('/signup', 
+            AuthRequestMiddleawres.validateAuthRequest,
             UserController.signup );
 
 ///api/v1/signup POST
-router.post('/signin', 
+router.post('/signin',
+            AuthRequestMiddleawres.validateAuthRequest,
             UserController.signin );
 
 module.exports = router;
